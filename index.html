@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Join Tumisho and Khathu in celebrating their union at their lobola celebration on 12 December 2026.">
+<title>Tumisho &amp; Khathu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: one centered invitation column, broken by a beadwork band between sections */
+:root{
+  --bg:#f7f2ea; --surface:#fffcf6; --ink:#2b2119; --muted:#6f6052;
+  --gold:#a8812f; --beige:#d9c6a5; --line:#e4d7c2; --ok:#4c7a4a; --no:#9a4a3a;
+  --display:"Italiana","Didot","Bodoni 72",Georgia,serif;
+  --body:"Jost","Avenir Next","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1c1611; --surface:#251d16; --ink:#efe6d8; --muted:#b4a590;
+  --gold:#d4ac57; --beige:#7d6a50; --line:#3a2f24; --ok:#8fbf8a; --no:#e0937f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1611; --surface:#251d16; --ink:#efe6d8; --muted:#b4a590;
+  --gold:#d4ac57; --beige:#7d6a50; --line:#3a2f24; --ok:#8fbf8a; --no:#e0937f; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;font-size:17px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:680px;margin:0 auto;padding-block:40px 64px;display:grid;gap:56px}
+h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+h2{font-size:clamp(30px,6vw,40px)}
+p{margin:0}
+.eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500}
+section{display:grid;gap:16px;text-align:center;justify-items:center}
+section p{max-width:34em;color:var(--muted)}
+a{color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:1px solid var(--gold);color:var(--ink);
+  background:transparent;border-radius:999px;font:500 14px var(--body);letter-spacing:.06em;text-decoration:none;cursor:pointer}
+.btn.solid{background:var(--gold);color:var(--bg)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* hero */
+.hero{gap:20px}
+.hero h1{font-size:clamp(52px,13vw,96px);letter-spacing:.01em}
+.hero h1 .amp{display:block;font-size:.45em;color:var(--gold);margin:4px 0}
+.portrait{width:min(300px,80%);aspect-ratio:3/4;max-width:100%;border-radius:150px 150px 6px 6px;
+  background:linear-gradient(160deg,var(--beige),var(--surface));border:1px solid var(--line);
+  display:grid;place-items:center;font-family:var(--display);font-size:64px;color:var(--gold)}
+.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;font-size:15px;letter-spacing:.04em}
+.facts span{display:flex;gap:8px;align-items:center}
+.facts b{font-weight:500;color:var(--gold)}
+.count{display:flex;gap:18px;font-variant-numeric:tabular-nums}
+.count div{display:grid;min-width:56px}
+.count strong{font-family:var(--display);font-size:34px;font-weight:400}
+.count small{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+/* beadwork band */
+.band{height:14px;width:100%;opacity:.85;
+  background:
+   linear-gradient(135deg,var(--gold) 25%,transparent 25%) 0 0/14px 14px,
+   linear-gradient(225deg,var(--gold) 25%,transparent 25%) 0 0/14px 14px,
+   repeating-linear-gradient(90deg,var(--beige) 0 14px,var(--surface) 14px 28px)}
+
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.photos div{aspect-ratio:4/5;max-width:100%;border:1px solid var(--line);border-radius:6px;
+  background:linear-gradient(200deg,var(--surface),var(--beige));display:grid;place-items:center;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+.swatches{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.swatch{display:grid;gap:8px;justify-items:center;font-size:13px;letter-spacing:.08em;color:var(--muted)}
+.swatch i{width:64px;height:64px;border-radius:50%;border:1px solid var(--line)}
+
+/* form */
+form{width:100%;display:grid;gap:18px;text-align:left;background:var(--surface);border:1px solid var(--line);
+  border-radius:10px;padding:28px max(16px,4vw)}
+.field{display:grid;gap:6px;min-width:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label,.legend{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+input,select,textarea{width:100%;font:300 16px var(--body);color:var(--ink);background:var(--bg);
+  border:1px solid var(--line);border-radius:6px;padding:11px 12px}
+textarea{min-height:90px;resize:vertical}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice label{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border:1px solid var(--line);
+  border-radius:6px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:15px;font-weight:400;color:var(--ink)}
+.choice input{width:auto;accent-color:var(--gold)}
+.choice label:has(input:checked){border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,transparent)}
+.status{font-size:14px;text-align:center;min-height:1.4em}
+.status.err{color:var(--no)} .status.ok{color:var(--ok)}
+.note{font-size:13px;color:var(--muted);text-align:center}
+
+/* owner list */
+.guests{width:100%;text-align:left;display:grid;gap:12px}
+.tally{display:flex;gap:24px;justify-content:center;font-variant-numeric:tabular-nums;flex-wrap:wrap}
+.tally div{display:grid;justify-items:center}
+.tally strong{font-family:var(--display);font-size:36px;font-weight:400}
+.tally small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.pill{font-size:12px;padding:2px 10px;border-radius:999px;border:1px solid currentColor}
+.pill.yes{color:var(--ok)} .pill.no{color:var(--no)}
+footer{text-align:center;font-size:13px;color:var(--muted);letter-spacing:.06em}
+@media (max-width:520px){.row,.choice{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.hero > *{animation:rise .8s ease both}.hero > *:nth-child(2){animation-delay:.1s}.hero > *:nth-child(3){animation-delay:.2s}}
+@keyframes rise{from{transform:translateY(8px)}to{transform:none}}
+</style>
+</head>
+<body>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">Celebrating our union</p>
+    <h1>Tumisho <span class="amp">&amp;</span> Khathu</h1>
+    <div class="portrait" aria-label="Photo of Tumisho and Khathu (placeholder)">T&nbsp;&amp;&nbsp;K</div>
+    <p>Together with our families, we invite you to our lobola celebration as two families become one.</p>
+    <div class="facts">
+      <span><b>Date</b> Saturday, 12 December 2026</span>
+      <span><b>Time</b> 10:00</span>
+      <span><b>Place</b> <a href="https://www.google.com/maps/dir/?api=1&destination=-22.9440,30.4790" target="_blank" rel="noopener">Sibasa, Limpopo</a></span>
+    </div>
+    <div class="count" id="count" aria-label="Countdown"></div>
+    <button class="btn" id="song" type="button" disabled title="Add an MP3 to enable">▶ Play our song</button>
+  </section>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <section>
+    <p class="eyebrow">Our story</p>
+    <h2>Our Lobola Celebration</h2>
+    <p>From a chance meeting to years of laughter, travel and shared dreams, we are honoured to celebrate our union through lobola and the blessing of our elders. Your presence would mean the world to us as our families come together.</p>
+    <div class="photos">
+      <div>Photo 2</div>
+      <div>Photo 3</div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The venue</p>
+    <h2>The Mudau Family Home</h2>
+    <p>Stand 1234, Sibasa, Thohoyandou, Limpopo. Follow the signs from the main road; parking is available on site.</p>
+    <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=-22.9440,30.4790" target="_blank" rel="noopener">Get directions</a>
+  </section>
+
+  <section>
+    <p class="eyebrow">Travelling from afar?</p>
+    <h2>Nearby Stays</h2>
+    <p>Find guesthouses and lodges around Thohoyandou for the night of 12 December 2026.</p>
+    <a class="btn" href="https://www.booking.com/searchresults.html?ss=Thohoyandou%2C+Limpopo%2C+South+Africa&checkin=2026-12-12&checkout=2026-12-13&group_adults=2&no_rooms=1" target="_blank" rel="noopener">View places to stay</a>
+  </section>
+
+  <section>
+    <p class="eyebrow">What to wear</p>
+    <h2>Dress Code</h2>
+    <p>We kindly ask our guests to wear emerald, gold and ivory.</p>
+    <div class="swatches">
+      <div class="swatch"><i style="background:#1f5e47"></i>Emerald</div>
+      <div class="swatch"><i style="background:#c9a24a"></i>Gold</div>
+      <div class="swatch"><i style="background:#f6f0e2"></i>Ivory</div>
+    </div>
+  </section>
+
+  <div class="band" aria-hidden="true"></div>
+
+  <section id="rsvp">
+    <p class="eyebrow">RSVP</p>
+    <h2>Kindly Respond</h2>
+    <p>Please let us know if you'll be joining us by 20 November 2026.</p>
+    <form id="form" novalidate>
+      <div class="field"><label for="name">Full name</label><input id="name" required autocomplete="name"></div>
+      <div class="row">
+        <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field">
+        <span class="legend">Will you be attending?</span>
+        <div class="choice">
+          <label><input type="radio" name="attending" id="att-yes" value="yes" checked> Joyfully accepts</label>
+          <label><input type="radio" name="attending" id="att-no" value="no"> Regretfully declines</label>
+        </div>
+      </div>
+      <div class="row" id="extra">
+        <div class="field"><label for="guests">Number of guests</label>
+          <select id="guests"><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+        <div class="field"><label for="plusone">Plus-one name</label><input id="plusone"></div>
+      </div>
+      <div class="field"><label for="diet">Dietary requirements</label><input id="diet" placeholder="e.g. vegetarian, halaal"></div>
+      <div class="field"><label for="msg">Message for the couple (optional)</label><textarea id="msg"></textarea></div>
+      <button class="btn solid" type="submit" id="send">Send RSVP</button>
+      <p class="status" id="status" role="status"></p>
+      <p class="note" id="signin" hidden>Online RSVP isn't connected yet. Please reply to the couple directly.</p>
+    </form>
+  </section>
+
+  <section id="owner" hidden>
+    <p class="eyebrow">Only you can see this</p>
+    <h2>Guest Responses</h2>
+    <div class="tally" id="tally"></div>
+    <div class="guests">
+      <div class="tablewrap"><table>
+        <thead><tr><th>Name</th><th>Reply</th><th>Guests</th><th>Contact</th><th>Dietary</th><th>Message</th></tr></thead>
+        <tbody id="rows"><tr><td colspan="6">No responses yet. They'll appear here as guests reply.</td></tr></tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <footer>Tumisho &amp; Khathu · Lobola Celebration · 12 December 2026</footer>
+</main>
+
+<script>
+(function(){
+  const EVENT = new Date("2026-12-12T10:00:00+02:00");
+  const countEl = document.getElementById("count");
+  function tick(){
+    let ms = EVENT - Date.now();
+    if (ms <= 0){ countEl.innerHTML = "<div><strong>Today</strong><small>is the day</small></div>"; return; }
+    const d = Math.floor(ms/864e5), h = Math.floor(ms/36e5)%24, m = Math.floor(ms/6e4)%60;
+    countEl.innerHTML = [[d,"Days"],[h,"Hours"],[m,"Minutes"]].map(([v,l])=>`<div><strong>${v}</strong><small>${l}</small></div>`).join("");
+  }
+  tick(); setInterval(tick, 30000);
+
+  const form = document.getElementById("form"), status = document.getElementById("status");
+  const extra = document.getElementById("extra"), send = document.getElementById("send");
+  form.addEventListener("change", e=>{ if(e.target.name==="attending") extra.hidden = form.attending.value==="no"; });
+
+  function setStatus(t, cls){ status.textContent = t; status.className = "status " + (cls||""); }
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  let db = null, me = null;
+  (async () => {
+    if (!window.claude?.use){ document.getElementById("signin").hidden = false; return; }
+    const [dbNs, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+    db = dbNs;
+    if (!db || !user){ document.getElementById("signin").hidden = false; return; }
+    me = await user.id();
+    // Prefill a previous reply
+    try {
+      const snap = await db.doc("rsvps/" + me).get();
+      const r = snap && snap.exists ? snap.data() : null;
+      if (r){
+        ["name","email","phone","plusone","diet","msg"].forEach(k => { if (r[k]) document.getElementById(k).value = r[k]; });
+        document.getElementById("guests").value = String(r.guests || 1);
+        document.getElementById(r.attending==="no"?"att-no":"att-yes").checked = true;
+        extra.hidden = r.attending==="no";
+        setStatus("We have your reply. You can update it any time.", "ok");
+        send.textContent = "Update RSVP";
+      }
+    } catch(e){}
+    if (user.isOwner && user.isOwner()) showOwner();
+  })();
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    if (!name){ setStatus("Please enter your full name.", "err"); form.name.focus(); return; }
+    const email = form.email.value.trim();
+    if (email && !/^\S+@\S+\.\S+$/.test(email)){ setStatus("That email address doesn't look right. Check it and try again.", "err"); return; }
+    if (!db || !me){ setStatus("Online RSVP isn't connected yet. Please reply to the couple directly.", "err"); return; }
+    const attending = form.attending.value;
+    const data = { name, email, phone: form.phone.value.trim(), attending,
+      guests: attending==="yes" ? Number(document.getElementById("guests").value) : 0,
+      plusone: attending==="yes" ? form.plusone.value.trim() : "",
+      diet: form.diet.value.trim(), msg: form.msg.value.trim(), at: new Date().toISOString() };
+    send.disabled = true; setStatus("Sending…");
+    try {
+      await db.doc("rsvps/" + me).set(data);
+      setStatus(attending==="yes" ? "Thank you! We can't wait to celebrate with you." : "Thank you for letting us know. You'll be missed.", "ok");
+      send.textContent = "Update RSVP";
+    } catch(err){
+      setStatus("Your RSVP couldn't be saved. Check your connection and try again.", "err");
+    } finally { send.disabled = false; }
+  });
+
+  function showOwner(){
+    document.getElementById("owner").hidden = false;
+    db.collection("rsvps").onSnapshot(snap => {
+      const list = (snap.docs || []).map(d => d.data()).sort((a,b)=> (b.at||"").localeCompare(a.at||""));
+      const yes = list.filter(r=>r.attending==="yes");
+      const heads = yes.reduce((n,r)=>n+(r.guests||1),0);
+      document.getElementById("tally").innerHTML =
+        [[list.length,"Replies"],[yes.length,"Accepted"],[list.length-yes.length,"Declined"],[heads,"Total guests"]]
+        .map(([v,l])=>`<div><strong>${v}</strong><small>${l}</small></div>`).join("");
+      document.getElementById("rows").innerHTML = list.length ? list.map(r=>`<tr>
+        <td>${esc(r.name)}${r.plusone?`<br><small>+ ${esc(r.plusone)}</small>`:""}</td>
+        <td><span class="pill ${r.attending==="yes"?"yes":"no"}">${r.attending==="yes"?"Attending":"Declined"}</span></td>
+        <td>${r.attending==="yes"?esc(r.guests):"–"}</td>
+        <td>${esc(r.email)}${r.phone?`<br>${esc(r.phone)}`:""}</td>
+        <td>${esc(r.diet)||"–"}</td><td>${esc(r.msg)||"–"}</td></tr>`).join("")
+        : `<tr><td colspan="6">No responses yet. They'll appear here as guests reply.</td></tr>`;
+    }, () => {});
+  }
+})();
+</script>
+</body>
+</html>
