@@ -190,7 +190,6 @@ footer{text-align:center;font-size:13px;color:var(--muted);letter-spacing:.06em}
       <div class="field"><label for="msg">Message for the couple (optional)</label><textarea id="msg"></textarea></div>
       <button class="btn solid" type="submit" id="send">Send RSVP</button>
       <p class="status" id="status" role="status"></p>
-      <p class="note" id="signin" hidden>Online RSVP isn't connected yet. Please reply to the couple directly.</p>
     </form>
   </section>
 
@@ -211,6 +210,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);letter-spacing:.06em}
 
 <script>
 (function(){
+  const RSVP_EMAIL = "unicorn.aurie01@gmail.com";
   const EVENT = new Date("2026-12-12T10:00:00+02:00");
   const countEl = document.getElementById("count");
   function tick(){
@@ -240,10 +240,10 @@ footer{text-align:center;font-size:13px;color:var(--muted);letter-spacing:.06em}
 
   let db = null, me = null;
   (async () => {
-    if (!window.claude?.use){ document.getElementById("signin").hidden = false; return; }
+    if (!window.claude?.use) return;
     const [dbNs, user] = await Promise.all([claude.use("db"), claude.use("user")]);
     db = dbNs;
-    if (!db || !user){ document.getElementById("signin").hidden = false; return; }
+    if (!db || !user){ db = null; return; }
     me = await user.id();
     // Prefill a previous reply
     try {
@@ -267,7 +267,6 @@ footer{text-align:center;font-size:13px;color:var(--muted);letter-spacing:.06em}
     if (!name){ setStatus("Please enter your full name.", "err"); form.name.focus(); return; }
     const email = form.email.value.trim();
     if (email && !/^\S+@\S+\.\S+$/.test(email)){ setStatus("That email address doesn't look right. Check it and try again.", "err"); return; }
-    if (!db || !me){ setStatus("Online RSVP isn't connected yet. Please reply to the couple directly.", "err"); return; }
     const attending = form.attending.value;
     const data = { name, email, phone: form.phone.value.trim(), attending,
       guests: attending==="yes" ? Number(document.getElementById("guests").value) : 0,
@@ -275,7 +274,21 @@ footer{text-align:center;font-size:13px;color:var(--muted);letter-spacing:.06em}
       diet: form.diet.value.trim(), msg: form.msg.value.trim(), at: new Date().toISOString() };
     send.disabled = true; setStatus("Sending…");
     try {
-      await db.doc("rsvps/" + me).set(data);
+      if (db && me) await db.doc("rsvps/" + me).set(data);
+      else {
+        const res = await fetch("https://formsubmit.co/ajax/" + RSVP_EMAIL, {
+          method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            _subject: "RSVP: " + data.name + (data.attending === "yes" ? " is coming" : " can't make it"),
+            _template: "table", _captcha: "false",
+            "Name": data.name, "Attending": data.attending === "yes" ? "Joyfully accepts" : "Regretfully declines",
+            "Number of guests": data.guests, "Plus-one": data.plusone || "-", "Email": data.email || "-",
+            "Phone": data.phone || "-", "Dietary requirements": data.diet || "-", "Message": data.msg || "-"
+          })
+        });
+        const out = await res.json().catch(() => ({}));
+        if (!res.ok || String(out.success) === "false") throw new Error(out.message || "send failed");
+      }
       setStatus(attending==="yes" ? "Thank you! We can't wait to celebrate with you." : "Thank you for letting us know. You'll be missed.", "ok");
       send.textContent = "Update RSVP";
     } catch(err){

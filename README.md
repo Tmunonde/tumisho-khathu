@@ -10,7 +10,7 @@ Invitation and RSVP page for Tumisho and Khathu's lobola celebration.
 3. The site will appear at `https://<your-username>.github.io/<repo-name>/`.
 
 ## RSVP form
-The form saves replies only when the page is opened as a Claude artifact. On GitHub Pages it shows a note asking guests to reply directly. To collect replies here, connect the form to a service such as Formspree or Google Forms.
+On GitHub Pages, each RSVP is emailed to unicorn.aurie01@gmail.com through FormSubmit (free, no sign-up). The very first RSVP triggers a one-time confirmation email from FormSubmit; click the link in it to start receiving replies. To change the address, edit `RSVP_EMAIL` near the bottom of `index.html`.
 
 ## Still to add
 - Photos of the couple (hero + two gallery images)
