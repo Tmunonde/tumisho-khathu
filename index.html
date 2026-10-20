@@ -287,12 +287,16 @@ footer{text-align:center;font-size:13px;color:var(--muted);letter-spacing:.06em}
           })
         });
         const out = await res.json().catch(() => ({}));
-        if (!res.ok || String(out.success) === "false") throw new Error(out.message || "send failed");
+        if (!res.ok || String(out.success) === "false") {
+          const m = String(out.message || "");
+          if (/activat/i.test(m)) { setStatus("Almost there: the RSVP inbox needs a one-time activation. Check unicorn.aurie01@gmail.com (and spam) for an email from FormSubmit and click Activate, then send again.", "err"); return; }
+          throw new Error(m || ("HTTP " + res.status));
+        }
       }
       setStatus(attending==="yes" ? "Thank you! We can't wait to celebrate with you." : "Thank you for letting us know. You'll be missed.", "ok");
       send.textContent = "Update RSVP";
     } catch(err){
-      setStatus("Your RSVP couldn't be saved. Check your connection and try again.", "err");
+      setStatus("Your RSVP couldn't be sent (" + (err && err.message ? err.message : "network error") + "). Check your connection and try again.", "err");
     } finally { send.disabled = false; }
   });
 
