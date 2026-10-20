@@ -61,6 +61,8 @@ a{color:var(--gold)}
    linear-gradient(225deg,var(--gold) 25%,transparent 25%) 0 0/14px 14px,
    repeating-linear-gradient(90deg,var(--beige) 0 14px,var(--surface) 14px 28px)}
 
+.song{display:grid;gap:8px;justify-items:center}
+.song-name{font-size:13px;letter-spacing:.04em;color:var(--muted)}
 .photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
 .photos div{aspect-ratio:4/5;max-width:100%;border:1px solid var(--line);border-radius:6px;
   background:linear-gradient(200deg,var(--surface),var(--beige));display:grid;place-items:center;
@@ -120,7 +122,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);letter-spacing:.06em}
       <span><b>Place</b> <a href="https://www.google.com/maps/dir/?api=1&destination=-22.9440,30.4790" target="_blank" rel="noopener">Sibasa, Limpopo</a></span>
     </div>
     <div class="count" id="count" aria-label="Countdown"></div>
-    <button class="btn" id="song" type="button" disabled title="Add an MP3 to enable">▶ Play our song</button>
+    <div class="song"><button class="btn" id="song" type="button" aria-pressed="false">▶ Play our song</button><audio id="audio" src="wena-dali.mp3" preload="none" loop></audio><p class="song-name">“Wena Dali” · Murumba Pitch &amp; Omit ST ft. Dinky Kunene, Buhle Sax &amp; Soa Matrix · <a href="https://youtu.be/BuNhirA8MXY" target="_blank" rel="noopener">YouTube</a></p></div>
   </section>
 
   <div class="band" aria-hidden="true"></div>
@@ -218,6 +220,16 @@ footer{text-align:center;font-size:13px;color:var(--muted);letter-spacing:.06em}
     countEl.innerHTML = [[d,"Days"],[h,"Hours"],[m,"Minutes"]].map(([v,l])=>`<div><strong>${v}</strong><small>${l}</small></div>`).join("");
   }
   tick(); setInterval(tick, 30000);
+
+  const songBtn = document.getElementById("song"), audio = document.getElementById("audio");
+  const setSong = on => { songBtn.textContent = on ? "❚❚ Pause our song" : "▶ Play our song"; songBtn.setAttribute("aria-pressed", on); };
+  songBtn.addEventListener("click", () => {
+    if (audio.paused) audio.play().then(() => setSong(true)).catch(() => { songBtn.textContent = "Song couldn't play. Try the YouTube link."; });
+    else { audio.pause(); setSong(false); }
+  });
+  audio.addEventListener("pause", () => setSong(false));
+  audio.addEventListener("play", () => setSong(true));
+
 
   const form = document.getElementById("form"), status = document.getElementById("status");
   const extra = document.getElementById("extra"), send = document.getElementById("send");
